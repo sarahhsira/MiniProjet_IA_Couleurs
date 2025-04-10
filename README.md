@@ -1,1 +1,2 @@
 # MiniProjet_IA_Couleurs
+Détection de Couleurs dans une Image est un mini-projet utilisant l'apprentissage non supervisé pour identifier les couleurs dominantes dans une image. En appliquant l'algorithme de K-Means clustering, ce projet permet d'analyser une image, de regrouper les pixels par couleur, et de déterminer les teintes les plus représentatives. Ce projet utilise Python, OpenCV pour le traitement d'images, et Matplotlib pour la visualisation des résultats. L'objectif est de fournir un outil simple pour extraire les couleurs principales d'une image donnée.
