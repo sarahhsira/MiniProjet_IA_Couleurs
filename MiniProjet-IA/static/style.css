@@ -1,4 +1,4 @@
-/* Reset some basic styles */
+/* Reset and base setup */
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: linear-gradient(to right, #fef6f9, #f0f8ff);
+  background-color: #FFEDFA; /* soft background */
   color: #333;
   padding: 40px 20px;
   display: flex;
@@ -18,24 +18,33 @@ body {
 /* Title */
 h1 {
   font-size: 2.8em;
-  margin-bottom: 30px;
-  color: #e91e63;
+  margin-bottom: 50px;
+  color: #e06398; /* soft pink title */
   text-align: center;
 }
 
 /* Upload box styling */
 .upload-form {
-  background-color: #ffffff;
-  padding: 25px 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+  padding: 50px 50px; /* more padding = bigger box */
+  border-radius: 25px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 600px;
+  max-width: 700px; /* bigger max width */
   margin-bottom: 30px;
 }
 
+.upload-form {
+  transition: transform 0.3s ease;
+}
+
+.upload-form:hover {
+  transform: scale(1.07);
+}
+
+
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 label {
@@ -57,11 +66,11 @@ input[type="number"] {
 
 input[type="file"]:hover,
 input[type="number"]:hover {
-  border-color: #e91e63;
+  border-color: #EC7FA9; /* highlight */
 }
 
 button {
-  background-color: #e91e63;
+  background-color: #EC7FA9; /* main button */
   color: white;
   border: none;
   padding: 12px 20px;
@@ -74,7 +83,7 @@ button {
 }
 
 button:hover {
-  background-color: #d81b60;
+  background-color: #e06398; /* slightly darker hover */
 }
 
 .error {
@@ -97,7 +106,7 @@ button:hover {
 
 .results h2 {
   margin-bottom: 10px;
-  color: #4a148c;
+  color: #EC7FA9;
 }
 
 .results p {
@@ -134,8 +143,8 @@ button:hover {
 }
 
 .color-table th {
-  background-color: #f3e5f5;
-  color: #4a148c;
+  background-color: #FFB8E0;
+  color: #fff;
 }
 
 .color-sample {
@@ -145,10 +154,12 @@ button:hover {
   border: 1px solid #ccc;
   margin: auto;
 }
+
+/* Secondary button */
 .btn-secondary {
-  background-color: #f8f9fa;
-  color: #333;
-  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #EC7FA9;
+  border: 2px solid #EC7FA9;
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 16px;
@@ -157,5 +168,6 @@ button:hover {
 }
 
 .btn-secondary:hover {
-  background-color: #e2e6ea;
+  background-color: #EC7FA9;
+  color: white;
 }
