@@ -8,6 +8,8 @@
 body {
   font-family: 'Nunito', sans-serif;
   background-color: #FFEDFA; /* soft background */
+  background: url('Background6.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: #333;
   padding: 40px 20px;
   display: flex;
