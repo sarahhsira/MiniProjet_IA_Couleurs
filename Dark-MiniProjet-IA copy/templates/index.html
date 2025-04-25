@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse de dominance des couleurs</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        
+        /* New1 */
+        :root {
+            
+            --accent-color: #D4AF37;                 /* doré élégant */
+            --accent-secondary: #F0E68C;             /* doré plus doux / beige sable */
+            --text-primary: #F5F5F5;                 /* texte clair très lisible */
+            --text-secondary: #A9A9A9;               /* gris doux pour le texte secondaire */
+            
+            --border-color: #D4AF37;                 /* doré pour les bordures */
+            --glow-effect: 0 0 15px rgba(212, 175, 55, 0.3); /* glow doré */
+        }
+        /* Red */
+        :root {
+            --accent-color: #B22222;               /* firebrick red — bold and elegant */
+            --accent-secondary: #8B0000;           /* dark red — deep contrast */
+            --text-primary: #F5F5F5;               /* off-white for readability */
+            --text-secondary: #A9A9A9;             /* soft gray for secondary text */
+            
+            --border-color: #B22222;               /* matching deep red border */
+            --glow-effect: 0 0 15px rgba(178, 34, 34, 0.3); /* red glow effect */
+          }
+        /* Green */
+          :root {
+            --accent-color: #237217;               /* main green accent – bold and natural */
+            --accent-secondary: #ADBC45;           /* lighter green – for highlights */
+            --text-primary: #F5F5F5;               /* soft white – readable on dark bg */
+            --text-secondary: #A9A9A9;             /* muted gray – secondary info */
+          
+            --card-bg: rgba(20, 78, 9, 0.41);       /* dark forest green background */
+            --border-color: #237217;               /* green border matching main accent */
+            --glow-effect: 0 0 15px rgba(35, 114, 23, 0.3); /* subtle green glow */
+          }
+           
+        
+        
+    </style>
+</head>
+<body>
+    <div class="luxury-gradient"></div>
+    
+    <div class="container">
+        <h1><i class="fas fa-palette"></i> Analyse de dominance des couleurs</h1>
+        
+        <div class="upload-form">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file"><i class="fas fa-cloud-upload-alt"></i> Télécharger une image :</label>
+                    <input type="file" id="file" name="file" accept="image/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="num_colors"><i class="fas fa-swatchbook"></i> Nombre de couleurs dominantes :</label>
+                    <input type="number" id="num_colors" name="num_colors" min="2" max="20" value="10">
+                </div>
+                
+                {% if error %}
+                    <div class="error"><i class="fas fa-exclamation-circle"></i> {{ error }}</div>
+                {% endif %}
+                
+                <button type="submit"><i class="fas fa-magic"></i> Analyser l'image</button>
+            </form>
+        </div>
+        
+        {% if plot_data %}
+        <div class="results">
+            <h2><i class="fas fa-chart-bar"></i> Résultats de l'analyse</h2>
+            <p class="filename"><i class="fas fa-image"></i> {{ filename }}</p>
+            
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ plot_data }}" alt="Analyse des couleurs">
+            </div>
+            
+            <h3><i class="fas fa-swatchbook"></i> Palette de couleurs</h3>
+            <div class="table-container">
+                <table class="color-table">
+                    <thead>
+                        <tr>
+                            <th>Couleur</th>
+                            <th>HEX</th>
+                            <th>RGB</th>
+                            <th>Pixels</th>
+                            <th>%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for color in color_data %}
+                        <tr>
+                            <td><div class="color-sample" style="background-color: {{ color.hex }};"></div></td>
+                            <td>{{ color.hex }}</td>
+                            <td>{{ color.rgb }}</td>
+                            <td>{{ color.count }}</td>
+                            <td>{{ color.percentage }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <form method="get" action="/">
+                <button type="submit" class="btn-secondary"><i class="fas fa-redo"></i> Nouvelle analyse</button>
+            </form> 
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

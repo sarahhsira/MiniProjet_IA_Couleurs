@@ -1,0 +1,319 @@
+/* Reset and base setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+  background: url("Green.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+/* Luxury gradient background */
+.luxury-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    var(--primary-bg) 0%, 
+    #1E1E1E 50%, 
+    var(--primary-bg) 100%);
+  z-index: -1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 50px 20px;
+  z-index: 1;
+}
+
+/* Typography */
+h1 {
+  font-size: 2.8em;
+  margin-bottom: 50px;
+  color: var(--accent-color);
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 15px auto 0;
+}
+
+h1 i {
+  margin-right: 15px;
+}
+
+h2, h3 {
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+h2 i, h3 i {
+  margin-right: 12px;
+}
+
+/* Form elements */
+.upload-form {
+  background-color: var(--card-bg);
+  padding: 50px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glow-effect);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.upload-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), var(--glow-effect);
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--accent-color);
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+}
+
+label i {
+  margin-right: 10px;
+}
+
+input[type="file"],
+input[type="number"] {
+  padding: 16px;
+  width: 100%;
+  background-color: rgba(30, 30, 30, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--text-primary);
+  transition: all 0.3s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input[type="file"]:hover,
+input[type="number"]:hover,
+input[type="file"]:focus,
+input[type="number"]:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  background-color: rgba(40, 40, 40, 0.6);
+}
+
+/* Buttons */
+button {
+  background: linear-gradient(135deg, 
+    var(--accent-color), 
+    rgba(212, 175, 55, 0.8));
+  color: #111;
+  border: none;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 30px auto 0;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+button i {
+  margin-right: 10px;
+}
+
+/* Error message */
+.error {
+  color: #FF6B6B;
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 14px;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #FF6B6B;
+}
+
+.error i {
+  margin-right: 8px;
+}
+
+/* Results section */
+.results {
+  background-color: var(--card-bg);
+  padding: 50px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glow-effect);
+}
+
+.filename {
+  margin-bottom: 25px;
+  color: var(--text-secondary);
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
+.filename i {
+  margin-right: 8px;
+  color: var(--accent-secondary);
+}
+
+/* Plot container */
+.plot-container {
+  text-align: center;
+  margin: 40px 0;
+  background-color: rgba(30, 30, 30, 0.6);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.plot-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+}
+
+/* Color table */
+.table-container {
+  overflow-x: auto;
+  margin: 40px 0;
+  background-color: rgba(30, 30, 30, 0.6);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 15px;
+}
+
+.color-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.color-table th,
+.color-table td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+}
+
+.color-table th {
+  background-color: rgba(212, 175, 55, 0.1);
+  color: var(--accent-color);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+.color-table tr:last-child td {
+  border-bottom: none;
+}
+
+.color-table tr:hover td {
+  background-color: rgba(212, 175, 55, 0.05);
+}
+
+.color-sample {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin: 0 auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.color-sample:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Secondary button */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 30px auto 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(212, 175, 55, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 15px;
+  }
+  
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 40px;
+  }
+  
+  .upload-form, .results {
+    padding: 30px 20px;
+  }
+  
+  .color-table th, 
+  .color-table td {
+    padding: 12px 10px;
+    font-size: 0.85em;
+  }
+}
