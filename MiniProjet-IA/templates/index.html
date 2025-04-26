@@ -4,45 +4,47 @@
   <!-- Début du document HTML avec langue française -->
   <head>
     <!-- En-tête du document (métadonnées, liens, etc.) -->
-    <meta charset="UTF-8" /> <!-- Encodage des caractères en UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <meta charset="UTF-8" />
+    <!-- Encodage des caractères en UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Configuration pour le responsive design -->
-    <title>Analyse de dominance des couleurs</title> <!-- Titre de la page -->
-    
+    <title>Analyse de dominance des couleurs</title>
+    <!-- Titre de la page -->
+
     <!-- Feuille de style principale -->
     <link rel="stylesheet" href="/static/style.css" />
-    
+
     <!-- Police Google Montserrat avec différentes épaisseurs -->
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    
+
     <!-- Icônes Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    
+
     <!-- Variables CSS personnalisées -->
     <style>
-        :root {
-            /* Couleur d'accent principale (or élégant) */
-            --accent-color: #d4af37;
-            /* Couleur d'accent secondaire (or plus doux/beige sable) */
-            --accent-secondary: #f0e68c;
-            /* Texte principal (blanc très lisible) */
-            --text-primary: #f5f5f5;
-            /* Texte secondaire (gris doux) */
-            --text-secondary: #a9a9a9;
-            /* Couleur des bordures (or) */
-            --border-color: #d4af37;
-            /* Effet de lueur dorée */
-            --glow-effect: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
+      :root {
+        /* Couleur d'accent principale (or élégant) */
+        --accent-color: #d4af37;
+        /* Couleur d'accent secondaire (or plus doux/beige sable) */
+        --accent-secondary: #f0e68c;
+        /* Texte principal (blanc très lisible) */
+        --text-primary: #f5f5f5;
+        /* Texte secondaire (gris doux) */
+        --text-secondary: #a9a9a9;
+        /* Couleur des bordures (or) */
+        --border-color: #d4af37;
+        /* Effet de lueur dorée */
+        --glow-effect: 0 0 15px rgba(212, 175, 55, 0.3);
+      }
     </style>
   </head>
-  
+
   <body>
     <!-- Arrière-plan en dégradé -->
     <div class="luxury-gradient"></div>
@@ -60,13 +62,7 @@
             <label for="file">
               <i class="fas fa-cloud-upload-alt"></i> Télécharger une image :
             </label>
-            <input
-              type="file"
-              id="file"
-              name="file"
-              accept="image/*"  <!-- N'accepte que les fichiers images -->
-              required  <!-- Champ obligatoire -->
-            />
+            <input type="file" id="file" name="file" accept="image/*" />
           </div>
 
           <!-- Groupe de champ pour le nombre de couleurs -->
@@ -78,9 +74,9 @@
               type="number"
               id="num_colors"
               name="num_colors"
-              min="2"  <!-- Valeur minimale -->
-              max="20"  <!-- Valeur maximale -->
-              value="10"  <!-- Valeur par défaut -->
+              min="2"
+              max="20"
+              value="10"
             />
           </div>
 
@@ -117,17 +113,22 @@
 
         <!-- Titre de la palette de couleurs -->
         <h3><i class="fas fa-swatchbook"></i> Palette de couleurs</h3>
-        
+
         <!-- Conteneur du tableau -->
         <div class="table-container">
           <table class="color-table">
             <thead>
               <tr>
-                <th>Couleur</th>  <!-- Colonne visuelle -->
-                <th>HEX</th>      <!-- Code hexadécimal -->
-                <th>RGB</th>      <!-- Code RGB -->
-                <th>Pixels</th>   <!-- Nombre de pixels -->
-                <th>%</th>        <!-- Pourcentage -->
+                <th>Couleur</th>
+                <!-- Colonne visuelle -->
+                <th>HEX</th>
+                <!-- Code hexadécimal -->
+                <th>RGB</th>
+                <!-- Code RGB -->
+                <th>Pixels</th>
+                <!-- Nombre de pixels -->
+                <th>%</th>
+                <!-- Pourcentage -->
               </tr>
             </thead>
             <tbody>
@@ -154,9 +155,9 @@
             </tbody>
           </table>
         </div>
-        
+
         <br />
-        
+
         <!-- Bouton pour une nouvelle analyse -->
         <form method="get" action="/">
           <button type="submit" class="btn-secondary">
