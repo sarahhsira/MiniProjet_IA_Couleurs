@@ -13,14 +13,17 @@ import base64  # Pour encoder les images en base64
 # Initialisation de l'application Flask
 app = Flask(__name__)
 
-# Configuration de l'application
-UPLOAD_FOLDER = 'uploads'  # Dossier pour stocker les images uploadées
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}  # Extensions de fichier autorisées
+# Configuration améliorée
+UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Création du dossier d'upload s'il n'existe pas
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
+# Création du dossier avec vérification
+try:
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    print(f"Dossier upload créé à : {UPLOAD_FOLDER}")
+except Exception as e:
+    print(f"Erreur création dossier upload : {str(e)}")
 def allowed_file(filename):
     """Vérifie si l'extension du fichier est autorisée"""
     return '.' in filename and \
@@ -119,37 +122,46 @@ def analyze_image(image_path, num_colors=10):
     
     return plot_data, color_data
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def welcome():
+    """Page d'accueil welcome"""
+    return render_template('welcome.html')
+
+@app.route('/index', methods=['GET', 'POST'])
 def upload_file():
-    """Gère l'upload des fichiers et l'affichage des résultats"""
     if request.method == 'POST':
-        # Vérification de la présence du fichier
         if 'file' not in request.files:
-            return render_template('index.html', error="No file selected")
-        
-        file = request.files['file']
-        num_colors = int(request.form.get('num_colors', 10))  # Valeur par défaut: 10
-        
-        if file.filename == '':
-            return render_template('index.html', error="No file selected")
-        
-        # Vérification de l'extension et traitement du fichier
-        if file and allowed_file(file.filename):
-            filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-            file.save(filename)  # Sauvegarde du fichier uploadé
+            return render_template('index.html', error="Aucun fichier sélectionné")
             
+        file = request.files['file']
+        if file.filename == '':
+            return render_template('index.html', error="Aucun fichier sélectionné")
+
+        if file and allowed_file(file.filename):
             try:
-                # Analyse de l'image
-                plot_data, color_data = analyze_image(filename, num_colors)
+                # Sécurisation du nom de fichier
+                filename = file.filename
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                
+                # Sauvegarde du fichier
+                file.save(filepath)
+                
+                # Vérification que le fichier existe bien
+                if not os.path.exists(filepath):
+                    return render_template('index.html', error="Échec de l'enregistrement du fichier")
+                
+                # Traitement de l'image
+                num_colors = int(request.form.get('num_colors', 10))
+                plot_data, color_data = analyze_image(filepath, num_colors)
+                
                 return render_template('index.html', 
                                     plot_data=plot_data,
                                     color_data=color_data,
-                                    filename=file.filename)
+                                    filename=filename)
+                                    
             except Exception as e:
-                # Gestion des erreurs
-                return render_template('index.html', error=f"Error processing image: {str(e)}")
-    
-    # Affichage du formulaire pour les requêtes GET
+                return render_template('index.html', error=f"Erreur traitement : {str(e)}")
+
     return render_template('index.html')
 
 @app.route('/uploads/<filename>')

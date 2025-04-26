@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Animation pour le bouton CTA
   const ctaButton = document.getElementById("startButton")
 
-ctaButton.addEventListener("click", () => {
-  // Redirection vers index.html
-  window.location.href = 'index.html';
-});
+  ctaButton.addEventListener("click", () => {
+    // Redirection vers la route /index
+    window.location.href = '/index';
+  });
 
 
   // Effet de survol amélioré pour les cartes

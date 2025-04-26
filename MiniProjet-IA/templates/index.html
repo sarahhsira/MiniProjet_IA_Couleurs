@@ -41,7 +41,6 @@
         --border-color: #d4af37;
         /* Effet de lueur dorée */
         --glow-effect: 0 0 15px rgba(212, 175, 55, 0.3);
-        
       }
     </style>
   </head>
@@ -159,12 +158,22 @@
 
         <br />
 
-        <!-- Bouton pour une nouvelle analyse -->
-        <form method="get" action="/">
-          <button type="submit" class="btn-secondary">
-            <i class="fas fa-redo"></i> Nouvelle analyse
-          </button>
-        </form>
+        <!-- Boutons d'action -->
+        <div class="action-buttons">
+          <!-- Bouton pour une nouvelle analyse -->
+          <form method="get" action="/index">
+            <button type="submit" class="btn-secondary">
+              <i class="fas fa-redo"></i> Nouvelle analyse
+            </button>
+          </form>
+
+          <!-- Bouton pour retourner à l'accueil -->
+          <form method="get" action="/">
+            <button type="submit" class="btn-secondary">
+              <i class="fas fa-home"></i> Retour à l'accueil
+            </button>
+          </form>
+        </div>
       </div>
       {% endif %}
     </div>

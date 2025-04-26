@@ -388,3 +388,54 @@ button i {
     font-size: 0.85em; /* Taille de police réduite */
   }
 }
+
+/* ============================================= */
+/* Conteneur des boutons d'action */
+/* ============================================= */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.action-buttons form {
+  margin: 0;
+}
+
+/* Bouton secondaire (style existant à conserver) */
+.btn-secondary {
+  background-color: transparent;
+  color: black;
+  border: 2px solid var(--accent-color);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block; /* Changé de block à inline-block */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0; /* Retiré la marge auto */
+}
+
+.btn-secondary:hover {
+  background-color: rgba(212, 175, 55, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}
