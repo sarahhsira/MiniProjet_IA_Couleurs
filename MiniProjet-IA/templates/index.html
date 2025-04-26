@@ -1,126 +1,163 @@
 <!DOCTYPE html>
+<!-- Déclaration du type de document HTML5 -->
 <html lang="fr">
+  <!-- Début du document HTML avec langue française -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Analyse de dominance des couleurs</title>
+    <!-- En-tête du document (métadonnées, liens, etc.) -->
+    <meta charset="UTF-8" /> <!-- Encodage des caractères en UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <!-- Configuration pour le responsive design -->
+    <title>Analyse de dominance des couleurs</title> <!-- Titre de la page -->
+    
+    <!-- Feuille de style principale -->
     <link rel="stylesheet" href="/static/style.css" />
+    
+    <!-- Police Google Montserrat avec différentes épaisseurs -->
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Icônes Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    
+    <!-- Variables CSS personnalisées -->
     <style>
         :root {
-            --accent-color: #d4af37; /* Elegant gold */
-            --accent-secondary: #f0e68c; /* Softer gold / sand beige */
-            --text-primary: #f5f5f5; /* Highly readable light text */
-            --text-secondary: #a9a9a9; /* Soft gray for secondary text */
-            --border-color: #d4af37; /* Gold for borders */
-            --glow-effect: 0 0 15px rgba(212, 175, 55, 0.3); /* Gold glow */
+            /* Couleur d'accent principale (or élégant) */
+            --accent-color: #d4af37;
+            /* Couleur d'accent secondaire (or plus doux/beige sable) */
+            --accent-secondary: #f0e68c;
+            /* Texte principal (blanc très lisible) */
+            --text-primary: #f5f5f5;
+            /* Texte secondaire (gris doux) */
+            --text-secondary: #a9a9a9;
+            /* Couleur des bordures (or) */
+            --border-color: #d4af37;
+            /* Effet de lueur dorée */
+            --glow-effect: 0 0 15px rgba(212, 175, 55, 0.3);
         }
-          
-        
-          
-          
-          
     </style>
   </head>
+  
   <body>
+    <!-- Arrière-plan en dégradé -->
     <div class="luxury-gradient"></div>
 
+    <!-- Conteneur principal -->
     <div class="container">
+      <!-- Titre principal avec icône -->
       <h1><i class="fas fa-palette"></i> Analyse de dominance des couleurs</h1>
 
+      <!-- Formulaire d'upload -->
       <div class="upload-form">
         <form method="post" enctype="multipart/form-data">
+          <!-- Groupe de champ pour l'upload de fichier -->
           <div class="form-group">
-            <label for="file"
-              ><i class="fas fa-cloud-upload-alt"></i> Télécharger une image
-              :</label
-            >
+            <label for="file">
+              <i class="fas fa-cloud-upload-alt"></i> Télécharger une image :
+            </label>
             <input
               type="file"
               id="file"
               name="file"
-              accept="image/*"
-              required
+              accept="image/*"  <!-- N'accepte que les fichiers images -->
+              required  <!-- Champ obligatoire -->
             />
           </div>
 
+          <!-- Groupe de champ pour le nombre de couleurs -->
           <div class="form-group">
-            <label for="num_colors"
-              ><i class="fas fa-swatchbook"></i> Nombre de couleurs dominantes
-              :</label
-            >
+            <label for="num_colors">
+              <i class="fas fa-swatchbook"></i> Nombre de couleurs dominantes :
+            </label>
             <input
               type="number"
               id="num_colors"
               name="num_colors"
-              min="2"
-              max="20"
-              value="10"
+              min="2"  <!-- Valeur minimale -->
+              max="20"  <!-- Valeur maximale -->
+              value="10"  <!-- Valeur par défaut -->
             />
           </div>
 
+          <!-- Affichage des erreurs (si elles existent) -->
           {% if error %}
           <div class="error">
             <i class="fas fa-exclamation-circle"></i> {{ error }}
           </div>
           {% endif %}
 
+          <!-- Bouton de soumission -->
           <button type="submit">
             <i class="fas fa-magic"></i> Analyser l'image
           </button>
         </form>
       </div>
 
+      <!-- Section des résultats (affichée seulement si plot_data existe) -->
       {% if plot_data %}
       <div class="results">
+        <!-- Titre des résultats -->
         <h2><i class="fas fa-chart-bar"></i> Résultats de l'analyse</h2>
+        <!-- Nom du fichier analysé -->
         <p class="filename"><i class="fas fa-image"></i> {{ filename }}</p>
 
+        <!-- Conteneur du graphique -->
         <div class="plot-container">
+          <!-- Image encodée en base64 -->
           <img
             src="data:image/png;base64,{{ plot_data }}"
             alt="Analyse des couleurs"
           />
         </div>
 
+        <!-- Titre de la palette de couleurs -->
         <h3><i class="fas fa-swatchbook"></i> Palette de couleurs</h3>
+        
+        <!-- Conteneur du tableau -->
         <div class="table-container">
           <table class="color-table">
             <thead>
               <tr>
-                <th>Couleur</th>
-                <th>HEX</th>
-                <th>RGB</th>
-                <th>Pixels</th>
-                <th>%</th>
+                <th>Couleur</th>  <!-- Colonne visuelle -->
+                <th>HEX</th>      <!-- Code hexadécimal -->
+                <th>RGB</th>      <!-- Code RGB -->
+                <th>Pixels</th>   <!-- Nombre de pixels -->
+                <th>%</th>        <!-- Pourcentage -->
               </tr>
             </thead>
             <tbody>
+              <!-- Boucle pour chaque couleur dans les données -->
               {% for color in color_data %}
               <tr>
+                <!-- Échantillon de couleur -->
                 <td>
                   <div
                     class="color-sample"
                     style="background-color: {{ color.hex }};"
                   ></div>
                 </td>
+                <!-- Code hexadécimal -->
                 <td>{{ color.hex }}</td>
+                <!-- Code RGB -->
                 <td>{{ color.rgb }}</td>
+                <!-- Nombre de pixels -->
                 <td>{{ color.count }}</td>
+                <!-- Pourcentage -->
                 <td>{{ color.percentage }}</td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
+        
         <br />
+        
+        <!-- Bouton pour une nouvelle analyse -->
         <form method="get" action="/">
           <button type="submit" class="btn-secondary">
             <i class="fas fa-redo"></i> Nouvelle analyse
