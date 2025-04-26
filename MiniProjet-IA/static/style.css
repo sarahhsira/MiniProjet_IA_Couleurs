@@ -14,7 +14,22 @@ body {
   align-items: center;
   position: relative;
   overflow-x: hidden;
+  background: url("Background.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
+.container  {
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: 
+    1px 1px 1px rgba(255, 215, 0, 0.3),
+    -1px -1px 1px rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(
+    to bottom,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
+} 
 
 /* Luxury gradient background */
 .luxury-gradient {
