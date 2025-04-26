@@ -25,17 +25,10 @@ body {
 
 /* Conteneur avec texte en dégradé */
 .container {
-  color: transparent; /* Texte transparent */
-  background-clip: text; /* Dégradé limité à la forme du texte */
-  -webkit-background-clip: text; /* Version pour Webkit */
-  text-shadow: 
-    1px 1px 1px rgba(255, 215, 0, 0.3), /* Ombre dorée */
-    -1px -1px 1px rgba(0, 0, 0, 0.5); /* Ombre noire */
-  background-image: linear-gradient(
-    to bottom,
-    var(--accent-color),
-    var(--accent-secondary)
-  ); /* Dégradé vertical */
+  
+  
+  color: var(--text-primary);
+  background: transparent;
 } 
 
 /* ============================================= */
@@ -230,7 +223,7 @@ button i {
   width: 100%; /* Pleine largeur */
   max-width: 1000px; /* Largeur maximale */
   margin: 0 auto 40px; /* Centrage avec marge basse */
-  border: 1px solid rgba(212, 175, 55, 0.2); /* Bordure subtile */
+  border: 1px solid rgba(149, 142, 120, 0.568); /* Bordure subtile */
   backdrop-filter: blur(10px); /* Effet de flou derrière */
   box-shadow: var(--glow-effect); /* Ombre portée avec effet lumineux */
 }
@@ -273,12 +266,20 @@ button i {
 /* Tableau de couleurs */
 /* ============================================= */
 .table-container {
-  overflow-x: auto; /* Défilement horizontal si nécessaire */
-  margin: 40px 0; /* Marges verticales */
-  background-color: rgba(30, 30, 30, 0.6); /* Fond semi-transparent */
-  border-radius: 12px; /* Coins arrondis */
-  border: 1px solid var(--border-color); /* Bordure */
-  padding: 15px; /* Espacement intérieur */
+  background-color: var(--card-bg); /* Remplace le semi-transparent */
+  border: 1px solid var(--accent-color); /* Bordure plus visible */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--glow-effect); /* Ombre plus prononcée */
+}
+
+.color-table th {
+  background-color: rgba(212, 175, 55, 0.2); /* Fond d'en-tête plus visible */
+}
+
+.color-sample {
+  width: 40px; /* Taille légèrement augmentée */
+  height: 40px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.5); /* Ombre plus prononcée */
+  border: 1px solid rgba(255,255,255,0.3); /* Bordure plus visible */
 }
 
 /* Style du tableau */
@@ -287,7 +288,9 @@ button i {
   border-collapse: collapse; /* Fusion des bordures */
   margin: 0; /* Pas de marge */
 }
-
+.color-table tr:nth-child(even) td {
+  background-color: rgba(255, 255, 255, 0.03); /* Alternance de lignes subtile */
+}
 /* Cellules du tableau */
 .color-table th,
 .color-table td {
@@ -338,7 +341,7 @@ button i {
 /* ============================================= */
 .btn-secondary {
   background-color: transparent; /* Fond transparent */
-  color: var(--accent-color); /* Couleur d'accent */
+  color: black; /* Couleur d'accent */
   border: 2px solid var(--accent-color); /* Bordure */
   padding: 14px 28px; /* Espacement intérieur */
   border-radius: 8px; /* Coins arrondis */
