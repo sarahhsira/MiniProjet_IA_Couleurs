@@ -1,19 +1,31 @@
 # Importation des modules nécessaires
+
+# Flask pour créer l'application web
 from flask import Flask, render_template, request, send_from_directory
-import os
-import cv2  # OpenCV pour le traitement d'image
-import numpy as np
-from sklearn.cluster import KMeans  # Algorithme de clustering
-import matplotlib
-matplotlib.use('Agg')  # Configuration du backend pour matplotlib (nécessaire pour Flask)
-import matplotlib.pyplot as plt
-from io import BytesIO  # Pour gérer les flux mémoire
-import base64  # Pour encoder les images en base64
+
+# Modules système
+import os  # Pour les opérations sur les fichiers et dossiers
+
+# Modules de traitement d'image
+import cv2  # OpenCV pour les opérations sur les images
+import numpy as np  # Pour les calculs numériques et tableaux multidimensionnels
+
+# Machine Learning pour l'analyse des couleurs
+from sklearn.cluster import KMeans  # Algorithme de clustering K-means
+
+# Modules pour la visualisation
+import matplotlib  # Bibliothèque de visualisation
+matplotlib.use('Agg')  # Configuration du backend pour matplotlib (nécessaire pour Flask car pas d'interface graphique)
+import matplotlib.pyplot as plt  # Pour créer des graphiques
+
+# Modules pour la gestion des données
+from io import BytesIO  # Pour gérer les flux mémoire (buffer d'images)
+import base64  # Pour encoder les images en base64 (affichage HTML)
 
 # Initialisation de l'application Flask
 app = Flask(__name__)
 
-# Configuration améliorée
+
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
