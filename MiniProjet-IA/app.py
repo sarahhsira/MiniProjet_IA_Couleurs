@@ -36,6 +36,7 @@ try:
     print(f"Dossier upload créé à : {UPLOAD_FOLDER}")
 except Exception as e:
     print(f"Erreur création dossier upload : {str(e)}")
+    
 def allowed_file(filename):
     """Vérifie si l'extension du fichier est autorisée"""
     return '.' in filename and \
